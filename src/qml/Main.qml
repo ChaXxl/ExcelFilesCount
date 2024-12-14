@@ -24,22 +24,24 @@ ApplicationWindow {
             font.pixelSize: 20
         }
 
-        // 接受拖拽
+        // 拖拽区域
         DropArea {
             anchors.fill: parent
 
+            // 拖拽进入时
             onEntered: (drop) => {
                 if (drop.hasUrls) {
                     draggableRect.color = "#403f3f"
                 }
             }
 
+            // 拖拽离开时
             onExited: (drop) => {
                 draggableRect.color = rectColor
             }
 
+            // 拖拽释放时
             onDropped: (drop) => {
-                // 当释放时, 将矩形恢复到默认层级
                 draggableRect.color = rectColor
                 if (drop.hasUrls) {
                     for (var i =0; i < drop.urls.length; i++) {
