@@ -9,14 +9,14 @@ find_package(Qt6 6.5 REQUIRED COMPONENTS Quick)
 qt_standard_project_setup(REQUIRES 6.5)
 
 qt_add_executable(appExcelFilesCount
-    main.cpp
+    src/main.cpp
 )
 
 qt_add_qml_module(appExcelFilesCount
     URI ExcelFilesCount
     VERSION 1.0
     QML_FILES
-        Main.qml
+        src/qml/Main.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
