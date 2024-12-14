@@ -1,5 +1,7 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
+import Qt.labs.platform
 
 ApplicationWindow {
     visible: true
@@ -13,9 +15,46 @@ ApplicationWindow {
     // 用于存储文件路径
     property var filePaths: []
 
+    FileDialog {
+        id: fileDialog
+        fileMode: FileDialog.OpenFiles
+        nameFilters: ["Excel files (*.xlsx)", "Excel 2007 files (*.xls)"]
+    }
+
+    RowLayout {
+        id: topRowLayout
+
+        spacing: 20
+
+        // 打开文件或文件夹
+        Button {
+            id: openFileBtn
+
+            text: "打开文件或文件夹"
+
+            onClicked: {
+                fileDialog.open();
+                console.log(fileDialog.files)
+            }
+        }
+
+        // 移除表格所有行
+        Button {
+            id: removeAllRowsBtn
+
+            text: "移除所有行"
+
+            onClicked: {
+
+            }
+        }
+    }
+
     // 用于拖拽的区域
     Rectangle {
         id: draggableRect
+
+        anchors.topMargin: topRowLayout.height + 10
         anchors.fill: parent
         color: rectColor
 
