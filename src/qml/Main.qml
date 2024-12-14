@@ -10,6 +10,9 @@ ApplicationWindow {
     // 用于存储矩形的颜色
     property string rectColor: "#1f1f1f"
 
+    // 用于存储文件路径
+    property var filePaths: []
+
     // 用于拖拽的区域
     Rectangle {
         id: draggableRect
@@ -44,9 +47,13 @@ ApplicationWindow {
             onDropped: (drop) => {
                 draggableRect.color = rectColor
                 if (drop.hasUrls) {
-                    for (var i =0; i < drop.urls.length; i++) {
+                    for (var i = 0; i < drop.urls.length; i++) {
                         var url = drop.urls[i].toString();
-                        console.log(url);
+
+                        // 移除 url 里面的 file://
+                        url = url.replace("file://", "");
+
+                        filePaths.push(url);
                     }
                 }
             }
